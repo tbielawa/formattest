@@ -327,6 +327,8 @@ Example script using ``bitmath.BitmathType`` as an argparser argument
 type:
 
 .. code-block:: python
+   :linenos:
+   :emphasize-lines: 1,3,5,7
 
    import argparse
    import bitmath
