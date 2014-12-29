@@ -309,7 +309,7 @@ Formatting
 ``argparse`` Integration
 ------------------------
 
-Example script using ``bitmath.BitmathType`` as an argparser argument
+Example script using :func:`bitmath.BitmathType` as an argparser argument
 type:
 
 .. code-block:: python
