@@ -328,7 +328,6 @@ type:
 
 .. code-block:: python
    :linenos:
-   :emphasize-lines: 1,3,5,7
 
    import argparse
    import bitmath
