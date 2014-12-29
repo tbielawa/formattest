@@ -10,7 +10,7 @@
    :height: 19
    :width: 77
 
-.. image:: https://readthedocs.org/projects/bitmath/?badge=latest
+.. image:: https://readthedocs.org/projects/bitmath/badge/?version=latest
    :target: https://bitmath.readthedocs.org/en/latest/
    :align: right
    :height: 19
