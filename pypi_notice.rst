@@ -323,16 +323,27 @@ Formatting
 ``argparse`` Integration
 ------------------------
 
+Example script using ``bitmath.BitmathType`` as an argparser argument
+type:
+
 .. code-block:: python
 
-   >>> import argparse, bitmath
-   >>> parser = argparse.ArgumentParser(description="Arg parser with a bitmath type argument")
-   >>> parser.add_argument('--block-size', type=bitmath.BitmathType)
+   import argparse
+   import bitmath
+   parser = argparse.ArgumentParser(
+       description="Arg parser with a bitmath type argument")
+   parser.add_argument('--block-size',
+                       type=bitmath.BitmathType,
+                       required=True)
 
-   >>> args = "--block-size 1MiB"
-   >>> results = parser.parse_args(args.split())
+   results = parser.parse_args()
+   print "Parsed in: {PARSED}; Which looks like {TOKIB} as a Kibibit".format(
+       PARSED=results.block_size,
+       TOKIB=results.block_size.Kib)
 
-   >>> print type(results.block_size)
-   <class 'bitmath.MiB'>
-   >>> results.block_size.to_Kib()
-   KiB(1024.0)
+If ran as a script the results would be similar to this:
+
+.. code-block:: python
+
+   $ python ./bmargparse.py --block-size 100MiB
+   Parsed in: 100.0 MiB; Which looks like 819200.0 Kib as a Kibibit
