@@ -20,8 +20,9 @@
 bitmath
 =======
 
-*bitmath* simplifies many facets of interacting with file sizes in
-various units. Functionality includes:
+`bitmath <http://bitmath.readthedocs.org/en/latest/>`_ simplifies many
+facets of interacting with file sizes in various units. Functionality
+includes:
 
 * Converting between **SI** and **NIST** prefix units (``GiB`` to ``kB``)
 * Converting between units of the same type (SI to SI, or NIST to NIST)
@@ -116,21 +117,14 @@ Arithmetic
 
 .. code-block:: python
 
-   >>> from bitmath import *
-
-   >>> log_size = kB(137.4)
-
-   >>> log_zipped_size = Byte(987)
-
+   >>> import bitmath
+   >>> log_size = bitmath.kB(137.4)
+   >>> log_zipped_size = bitmath.Byte(987)
    >>> print "Compression saved %s space" % (log_size - log_zipped_size)
    Compression saved 136.413kB space
-
-   >>> thumb_drive = GiB(12)
-
-   >>> song_size = MiB(5)
-
+   >>> thumb_drive = bitmath.GiB(12)
+   >>> song_size = bitmath.MiB(5)
    >>> songs_per_drive = thumb_drive / song_size
-
    >>> print songs_per_drive
    2457.6
 
@@ -141,9 +135,7 @@ Convert Units
 .. code-block:: python
 
    >>> from bitmath import *
-
    >>> dvd_size = GiB(4.7)
-
    >>> print "DVD Size in MiB: %s" % dvd_size.to_MiB()
    DVD Size in MiB: 4812.8 MiB
 
@@ -154,12 +146,10 @@ Select a human-readable unit
 .. code-block:: python
 
    >>> small_number = kB(100)
-
    >>> ugly_number = small_number.to_TiB()
 
    >>> print ugly_number
    9.09494701773e-08 TiB
-
    >>> print ugly_number.best_prefix()
    97.65625 KiB
 
@@ -170,16 +160,12 @@ Rich Comparison
 .. code-block:: python
 
    >>> cd_size = MiB(700)
-
    >>> cd_size > dvd_size
    False
-
    >>> cd_size < dvd_size
    True
-
    >>> MiB(1) == KiB(1024)
    True
-
    >>> MiB(1) <= KiB(1024)
    True
 
