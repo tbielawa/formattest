@@ -343,7 +343,7 @@ type:
 
 If ran as a script the results would be similar to this:
 
-.. code-block:: python
+.. code-block:: bash
 
    $ python ./bmargparse.py --block-size 100MiB
    Parsed in: 100.0 MiB; Which looks like 819200.0 Kib as a Kibibit
