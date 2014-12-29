@@ -11,7 +11,7 @@
    :width: 77
 
 .. image:: https://readthedocs.org/projects/bitmath/badge/?version=latest
-   :target: https://bitmath.readthedocs.org/en/latest/
+   :target: http://bitmath.rtfd.org/
    :align: right
    :height: 19
    :width: 77
@@ -47,7 +47,7 @@ most of the time what you're really seeing are the base-2 sizes/rates.
 **Don't Forget!** The source for bitmath `is available on GitHub
 <https://github.com/tbielawa/bitmath>`_.
 
-OH! And did we mention it has 150+ unittests? `Check them out for
+OH! And did we mention it has 170+ unittests? `Check them out for
 yourself <https://github.com/tbielawa/bitmath/tree/master/tests>`_.
 
 
@@ -64,6 +64,7 @@ Topics include:
 
   * Functions
   * Context Managers
+  * ``argparse`` integration
   * Module Variables
 
 * Classes
@@ -99,6 +100,8 @@ Topics include:
 
   * Rules for Math
   * On Units
+
+* NEWS
 
 * Copyright
 
@@ -142,7 +145,7 @@ Convert Units
    >>> dvd_size = GiB(4.7)
 
    >>> print "DVD Size in MiB: %s" % dvd_size.to_MiB()
-   DVD Size in MiB: 4812.8MiB
+   DVD Size in MiB: 4812.8 MiB
 
 
 Select a human-readable unit
@@ -155,10 +158,10 @@ Select a human-readable unit
    >>> ugly_number = small_number.to_TiB()
 
    >>> print ugly_number
-   9.09494701773e-08TiB
+   9.09494701773e-08 TiB
 
    >>> print ugly_number.best_prefix()
-   97.65625KiB
+   97.65625 KiB
 
 
 Rich Comparison
@@ -216,7 +219,7 @@ Example:
       ...: bytes/bits without trailing decimals: {bytes:.0f}/{bits:.0f}""" % str(ugly_number)
 
    >>> print ugly_number.format(longer_format)
-   Formatting attributes for 5.96046447754MiB
+   Formatting attributes for 5.96046447754 MiB
    This instances prefix unit is MiB, which is a NIST type unit
    The unit value is 5.96046447754
    This value can be truncated to just 1 digit of precision: 6.0
@@ -287,7 +290,7 @@ Formatting
 
 .. code-block:: python
 
-   >> with bitmath.format(fmt_str="[{value:.3f}@{unit}]"):
+   >>> with bitmath.format(fmt_str="[{value:.3f}@{unit}]"):
    ...     for i in bitmath.listdir('./tests/', followlinks=True, relpath=True, bestprefix=True):
    ...         print i[1]
    ...
@@ -316,3 +319,20 @@ Formatting
    [1.000@KiB]
    [38.000@Byte]
    [10.000@Byte]
+
+``argparse`` Integration
+------------------------
+
+.. code-block:: python
+
+   >>> import argparse, bitmath
+   >>> parser = argparse.ArgumentParser(description="Arg parser with a bitmath type argument")
+   >>> parser.add_argument('--block-size', type=bitmath.BitmathType)
+
+   >>> args = "--block-size 1MiB"
+   >>> results = parser.parse_args(args.split())
+
+   >>> print type(results.block_size)
+   <class 'bitmath.MiB'>
+   >>> results.block_size.to_Kib()
+   KiB(1024.0)
